@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#081218">
+<title>CONLOG — Contested Logistics</title>
+<link rel="stylesheet" href="./src/styles.css">
+</head>
+<body>
+<div id="app" class="app-shell">
+  <header class="topbar">
+    <div class="brand">
+      <div class="kicker">CONLOG 0.1</div>
+      <h1>CONTESTED LOGISTICS</h1>
+      <div class="subtitle">Virtual Cooperative Sustainment Wargame</div>
+    </div>
+    <div class="scenario-head">
+      <div id="scenarioName">SCENARIO 001 · THE LAST 72 HOURS</div>
+      <div class="clock-row"><span id="statusDot" class="status-dot live"></span><strong id="gameClock">H+00:00</strong></div>
+    </div>
+  </header>
+
+  <nav class="rolebar">
+    <label>ROLE
+      <select id="roleSelect"></select>
+    </label>
+    <button id="pauseBtn">PAUSE</button>
+    <button class="speed active" data-speed="1">1X</button>
+    <button class="speed" data-speed="2">2X</button>
+    <button class="speed" data-speed="4">4X</button>
+    <button id="saveBtn" class="secondary">SAVE</button>
+    <button id="resetBtn" class="danger secondary">RESET</button>
+  </nav>
+
+  <div id="flash" class="flash hidden"></div>
+
+  <main class="workspace">
+    <aside class="rail left-rail">
+      <section class="card">
+        <h2>MISSION</h2>
+        <p id="missionText" class="mission"></p>
+      </section>
+
+      <section class="card">
+        <h2>SUPPORTED FORCE</h2>
+        <div id="readinessPanel"></div>
+      </section>
+
+      <section class="card">
+        <h2>SUPPLY POSTURE</h2>
+        <div id="supplyPanel"></div>
+      </section>
+    </aside>
+
+    <section class="main-column">
+      <section class="card map-card">
+        <div class="card-head">
+          <div>
+            <h2>COMMON OPERATIONAL PICTURE</h2>
+            <div id="roleHint" class="muted small"></div>
+          </div>
+          <div id="networkStatus" class="pill">NETWORK NOMINAL</div>
+        </div>
+        <div id="map" class="map">
+          <svg id="routeLayer" class="route-layer" viewBox="0 0 1000 560" preserveAspectRatio="none"></svg>
+          <div id="nodeLayer"></div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="card-head"><h2>ACTIVE MOVEMENTS</h2><span id="movementCount" class="muted small"></span></div>
+        <div id="movements" class="table-wrap"></div>
+      </section>
+
+      <section class="card">
+        <h2>STRUCTURED ORDER</h2>
+        <div class="order-grid">
+          <label>Asset<select id="assetSelect"></select></label>
+          <label>Origin<select id="originSelect"></select></label>
+          <label>Destination<select id="destinationSelect"></select></label>
+          <label>Cargo<select id="cargoSelect"></select></label>
+          <label>Quantity<input id="qtyInput" type="number" min="1" max="20" value="2"></label>
+          <label>Route<select id="routeSelect"></select></label>
+          <label class="wide">Commander's intent / note<input id="orderNote" type="text" maxlength="120" placeholder="Optional context"></label>
+          <button id="submitOrder" class="primary">SUBMIT ORDER</button>
+        </div>
+        <div id="orderFeedback" class="feedback"></div>
+      </section>
+    </section>
+
+    <aside class="rail right-rail">
+      <section class="card">
+        <div class="card-head"><h2>ACTIVE REQUESTS</h2><span id="requestCount" class="badge"></span></div>
+        <div id="requestsPanel"></div>
+      </section>
+
+      <section id="intelCard" class="card">
+        <h2>INFORMATION / INTELLIGENCE</h2>
+        <div id="intelPanel"></div>
+      </section>
+
+      <section id="whiteCellCard" class="card hidden">
+        <h2>WHITE CELL</h2>
+        <div class="inject-grid">
+          <button data-inject="route">DEGRADE ROUTE</button>
+          <button data-inject="supply">SUPPLY DISCREPANCY</button>
+          <button data-inject="maintenance">VEHICLE FAILURE</button>
+          <button data-inject="comms">DEGRADE COMMS</button>
+          <button data-inject="priority">NEW PRIORITY</button>
+          <button data-inject="weather">WEATHER SHIFT</button>
+        </div>
+      </section>
+
+      <section class="card journal-card">
+        <div class="card-head"><h2>EVENT JOURNAL</h2><button id="aarBtn" class="secondary tiny">AAR</button></div>
+        <div id="journal" class="journal"></div>
+      </section>
+    </aside>
+  </main>
+</div>
+
+<dialog id="aarDialog">
+  <div class="dialog-head"><h2>AFTER-ACTION REVIEW</h2><button id="closeAar">CLOSE</button></div>
+  <div id="aarBody"></div>
+</dialog>
+
+<script type="module" src="./src/app.js"></script>
+</body>
+</html>

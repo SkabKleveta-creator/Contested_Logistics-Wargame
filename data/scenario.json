@@ -1,0 +1,40 @@
+{
+  "id":"last-72-hours",
+  "name":"SCENARIO 001 · THE LAST 72 HOURS",
+  "durationMinutes":4320,
+  "mission":"Sustain three distributed elements through H+72 while preserving enough combat power to execute the final operational requirement.",
+  "roles":["Commander","Operations","Logistics","Supply","Maintenance","Transportation","Intel / Information","White Cell"],
+  "cargoTypes":["Fuel","Class IX","Food / Water","Ammunition"],
+  "nodes":[
+    {"id":"ALPHA","kind":"log","label":"Primary Logistics Node","x":16,"y":28,"inventory":{"Fuel":26,"Class IX":11,"Food / Water":24,"Ammunition":15}},
+    {"id":"BRAVO","kind":"log","label":"Forward Distribution","x":46,"y":62,"inventory":{"Fuel":12,"Class IX":7,"Food / Water":12,"Ammunition":8}},
+    {"id":"ECHO","kind":"log","label":"Maintenance / Supply","x":78,"y":25,"inventory":{"Fuel":8,"Class IX":16,"Food / Water":8,"Ammunition":7}},
+    {"id":"RAVEN","kind":"unit","label":"Supported Unit","x":81,"y":76,"readiness":82,"stocks":{"Fuel":7,"Class IX":3,"Food / Water":8,"Ammunition":6}},
+    {"id":"VIPER","kind":"unit","label":"Supported Unit","x":49,"y":14,"readiness":76,"stocks":{"Fuel":8,"Class IX":4,"Food / Water":7,"Ammunition":7}},
+    {"id":"NOMAD","kind":"unit","label":"Supported Unit","x":16,"y":78,"readiness":69,"stocks":{"Fuel":6,"Class IX":2,"Food / Water":8,"Ammunition":5}}
+  ],
+  "routes":[
+    {"id":"SILVER","a":"ALPHA","b":"VIPER","hours":5,"risk":0.12},
+    {"id":"COPPER","a":"ALPHA","b":"BRAVO","hours":4,"risk":0.10},
+    {"id":"WEST","a":"BRAVO","b":"NOMAD","hours":4,"risk":0.15},
+    {"id":"EAST","a":"BRAVO","b":"RAVEN","hours":6,"risk":0.18},
+    {"id":"GOLD","a":"ECHO","b":"RAVEN","hours":5,"risk":0.13},
+    {"id":"NORTH","a":"VIPER","b":"ECHO","hours":4,"risk":0.16}
+  ],
+  "assets":[
+    {"id":"T-01","capacity":6,"status":"READY"},
+    {"id":"T-02","capacity":6,"status":"READY"},
+    {"id":"T-03","capacity":5,"status":"READY"},
+    {"id":"T-04","capacity":5,"status":"READY"},
+    {"id":"UAS-1","capacity":2,"status":"READY"}
+  ],
+  "requests":[
+    {"id":"REQ-01","unit":"RAVEN","cargo":"Fuel","qty":4,"priority":"URGENT","text":"Fuel posture approaching critical threshold."},
+    {"id":"REQ-02","unit":"NOMAD","cargo":"Class IX","qty":2,"priority":"PRIORITY","text":"Repair package required to restore deadline equipment."}
+  ],
+  "intel":[
+    {"text":"Adversary reconnaissance activity assessed near eastern routes.","confidence":62},
+    {"text":"Weather deterioration possible after H+18.","confidence":71},
+    {"text":"System inventory at BRAVO has not been physically verified.","confidence":54}
+  ]
+}
